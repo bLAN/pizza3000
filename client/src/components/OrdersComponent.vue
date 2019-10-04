@@ -2,35 +2,19 @@
   <div>
     <h4 class="subtitle is-4">Bestill her</h4>
 
-    <div class="create-order">
+    <form @submit.prevent="onSubmit" id="orderForm">
+      <label for="name">Skriv inn ditt navn:</label>
+      <input class="input" type="text" id="name" placeholder="Ditt navn her." v-model="name"><br>
+      <input type="radio" name="pizza" value="5d96ff8b7b50251c1ce8d958" v-model="pizza"> Grandiosa<br>
+      <input type="radio" name="pizza" value="5d9752956f32b631d81d355d" v-model="pizza"> Grandiosa Pepperoni<br>
+      <input type="radio" name="pizza" value="5d9702777b50251c1ce8d95a" v-model="pizza"> Big One <br>
+      <input type="radio" name="pizza" value="5d9721937b50251c1ce8d95f" v-model="pizza"> Big One Triple Cheese<br>
 
-      <div class="field">
-        <label class="label" for="name">Skriv inn ditt navn</label>
-        <div class="control">
-          <input class="input" type="text" id="name" placeholder="Ditt navn" v-model="name">
-        </div>
+        <p id="statusMessage">{{ statusMessage }}</p>
 
-      </div>
+      <input class="button is-success" id="submitBtn" type="submit" v-on:click="createOrder" value="Legg inn bestilling">
+    </form>
 
-      <div class="field">
-        <div class="control">
-          <input type="radio" id="grandiosa" value="5d96ff8b7b50251c1ce8d958" v-model="pizza">
-          <label for="grandiosa">Grandiosa</label>
-          <input type="radio" id="bigOne" value="5d9702777b50251c1ce8d95a" v-model="pizza">
-          <label for="bigOne">Big One</label>
-          <input type="radio" id="bigOneTrippleCheese" value="5d9721937b50251c1ce8d95f" v-model="pizza">
-          <label for="bigOneTrippleCheese">(BO) Tripple Cheese</label>
-          <br><br>
-          <p>Valgt Pizza: {{ pizza }}</p>
-        </div>
-      </div>
-
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link" v-on:click="createOrder">Bestill!</button>
-        </div>
-      </div>
-    </div>
     <hr>
     <p class="error" v-if="error">{{ error }}</p>
 
@@ -44,21 +28,14 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -70,22 +47,15 @@
              v-bind:key="order._id"
         >
           <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="media-content">
-                <p class="title is-4">{{ order.name }}</p>
-              </div>
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{ order.name }}</p>
             </div>
+          </div>
 
-            <div class="content">
-              <p>{{ order.pizza }}</p>
-            </div>
-
-
+          <div class="content">
+            <p class="subtitle is-5">{{ order.pizza.name }}</p>
+          </div>
           </div>
         </div>
       </div>
@@ -98,20 +68,14 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
-
           </div>
         </div>
       </div>
@@ -131,6 +95,8 @@
                 error: '',
                 name: '',
                 pizza: '',
+                pizzas: [],
+                statusMessage:'',
             };
         },
         computed: {
@@ -142,12 +108,19 @@
             },
             ordersIsComplete() {
                 return this.orders.filter(order => order.statusID === 3)
+            },
+            pizzaName() {
+               if (this.pizza === "") {
+                    return ""
+                }
+                return this.pizzas.find(pizza => pizza._id === this.pizza).name
             }
 
         },
-        async created() {
+        async mounted() {
             try {
                 this.orders = await OrderService.getOrders();
+                this.pizzas = await OrderService.getPizzas();
             } catch (err) {
                 this.error = err.message;
             }
@@ -155,6 +128,9 @@
         methods: {
             async createOrder() {
                 await OrderService.insertOrder(this.name, this.pizza);
+                this.name="";
+                this.pizza="";
+                this.statusMessage="Din pizza er bestilt :)";
                 this.orders = await OrderService.getOrders();
             }
         }
@@ -162,19 +138,26 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .create-order {
+<style>
+  #orderForm {
     width: 50%;
     margin: 0 auto;
   }
 
-  input[type="radio"]{
+  #statusMessage{
+    text-align: center;
+    font-size: 18px;
+    color: #42b983;
+    font-weight: bold;
+  }
+
+  input[type="radio"] {
     margin-left: 12px;
     margin-right: 5px;
   }
-  .radioGroup{
-    border: 1px solid black;
-    width: 100%;
+
+  label{
+    margin-right: 12px;
   }
 
   h4 {
