@@ -25,7 +25,7 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
+
 
           </div>
         </div>
@@ -52,13 +52,12 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
 
           </div>
         </div>
       </div>
       <div class="column">
-        <h4 class="subtitle is-4">klar</h4>
+        <h4 class="subtitle is-4">Klar (Hentast i Kiosken)</h4>
         <div class="card"
              v-for="(order) in ordersIsComplete"
              v-bind:item="order"
@@ -79,7 +78,7 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
+
           </div>
         </div>
       </div>
@@ -143,7 +142,7 @@
     color: #42b983;
   }
 
-  .order{
+  .order {
     border: 1px solid black;
     border-radius: 4px;
     margin: 10px;

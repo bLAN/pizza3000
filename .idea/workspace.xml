@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b074d2c7-33aa-4f84-b27e-314a53240835" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pizza3000.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/OverviewComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/views/Admin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/views/Overview.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/api/orders.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/OrderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/OrderService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/OrdersComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/About.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +93,7 @@
       <updated>1570118700185</updated>
       <workItem from="1570118702998" duration="19000" />
       <workItem from="1570118722190" duration="25072000" />
-      <workItem from="1570175997974" duration="7657000" />
+      <workItem from="1570175997974" duration="10908000" />
     </task>
     <servers />
   </component>

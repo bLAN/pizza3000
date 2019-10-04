@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h4 class="subtitle is-4">Kiosk Admin</h4>
-    <p </p>
     <nav class="panel">
       <p class="panel-heading">
         Statistikk
@@ -12,6 +11,9 @@
       </span>
       </a>
     </nav>
+
+    <hr>
+
     <p class="error" v-if="error">{{ error }}</p>
 
     <div class="columns">
@@ -89,7 +91,7 @@
         </div>
       </div>
       <div class="column">
-        <h4 class="subtitle is-4">klar</h4>
+        <h4 class="subtitle is-4">Klar for henting</h4>
         <div class="card"
              v-for="(order) in ordersIsReady"
              v-bind:item="order"
@@ -116,7 +118,7 @@
                 <a class="button is-warning" v-on:click="updateOrder(order._id, order.statusID-1)">Flytt ned</a>
               </p>
               <p class="control">
-                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Marker Solgt</a>
+                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Marker Levert</a>
               </p>
               <p class="control">
                 <a class="button is-danger" v-on:click="deleteOrder(order._id)">Slett</a>
