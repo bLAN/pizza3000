@@ -6,9 +6,9 @@ import { Order } from './Order'
 	expression: (connection: Connection) => connection.createQueryBuilder()
 		.select("item.*", "id")
 		.from(Item, "item")
-		.leftJoin(Order, 'orders', 'orders."itemId" = item.id')
+		.leftJoin('order', 'orders', 'orders."itemId" = item.id')
+		.addSelect('COUNT(orders.id)', 'sold')
 		.addGroupBy('item.id')
-		.addSelect('COUNT(item.id)', 'sold')
 })
 export class ItemWithAvailability {
 	@ViewColumn()

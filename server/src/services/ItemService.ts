@@ -1,6 +1,7 @@
 import { Service } from '@tsed/di'
 import { RepositoryService } from './RepositoryService'
 import { ItemWithAvailability } from '../entities/ItemWithAvailability'
+import { Order } from '../entities/Order'
 
 @Service()
 export class ItemService {
@@ -12,7 +13,14 @@ export class ItemService {
 		return this.repoService.getRepository(ItemWithAvailability)
 	}
 
+	private get orderRepo() {
+		return this.repoService.getRepository(Order)
+	}
+
 	getItems() {
+		this.orderRepo.findAndCount({
+
+		})
 		return this.itemWithAvailabilityRepo.find()
 	}
 
