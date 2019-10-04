@@ -12,18 +12,13 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
 
@@ -39,18 +34,13 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
           </div>
@@ -65,18 +55,13 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
           </div>
@@ -124,28 +109,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
-
-  .order {
-    border: 1px solid black;
-    border-radius: 4px;
-    margin: 10px;
-
-  }
 </style>
