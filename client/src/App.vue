@@ -10,7 +10,6 @@
 </template>
 
 <style lang="css">
-  @import "~bulma/css/bulma.css";
 #nav {
   padding: 30px;
 }

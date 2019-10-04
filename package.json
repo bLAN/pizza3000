@@ -8,6 +8,9 @@
     "start": "node server/index.js",
     "dev": "nodemon server/index.js"
   },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  },
   "author": "Jon Fossheim",
   "license": "MIT",
   "workspaces": [
