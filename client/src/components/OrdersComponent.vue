@@ -1,22 +1,26 @@
 <template>
   <div>
     <h4 class="subtitle is-4">Bestill her</h4>
+
     <div class="create-order">
+
       <div class="field">
-        <label class="label" for="name">Name</label>
+        <label class="label" for="name">Skriv inn ditt navn</label>
         <div class="control">
-          <input class="input" type="text" id="name" placeholder="Text input" v-model="name">
+          <input class="input" type="text" id="name" placeholder="Ditt navn" v-model="name">
         </div>
+
       </div>
 
       <div class="field">
         <div class="control">
-          <input type="radio" id="grandiosa" value="Grandiosa" v-model="pizza">
+          <input type="radio" id="grandiosa" value="5d96ff8b7b50251c1ce8d958" v-model="pizza">
           <label for="grandiosa">Grandiosa</label>
-          <br>
-          <input type="radio" id="bigOne" value="Big One" v-model="pizza">
+          <input type="radio" id="bigOne" value="5d9702777b50251c1ce8d95a" v-model="pizza">
           <label for="bigOne">Big One</label>
-          <br>
+          <input type="radio" id="bigOneTrippleCheese" value="5d9721937b50251c1ce8d95f" v-model="pizza">
+          <label for="bigOneTrippleCheese">(BO) Tripple Cheese</label>
+          <br><br>
           <p>Valgt Pizza: {{ pizza }}</p>
         </div>
       </div>
@@ -53,7 +57,7 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
+
 
           </div>
         </div>
@@ -80,13 +84,13 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
+
 
           </div>
         </div>
       </div>
       <div class="column">
-        <h4 class="subtitle is-4">klar</h4>
+        <h4 class="subtitle is-4">Klar (Hentast i Kiosken)</h4>
         <div class="card"
              v-for="(order) in ordersIsComplete"
              v-bind:item="order"
@@ -107,7 +111,7 @@
             <div class="content">
               <p>{{ order.pizza }}</p>
             </div>
-            <p>{{ order.statusID }}</p>
+
           </div>
         </div>
       </div>
@@ -117,54 +121,63 @@
 </template>
 
 <script>
-import OrderService from '../OrderService';
+    import OrderService from '../OrderService';
 
-export default {
-  name: 'OrdersComponent',
-  data() {
-    return {
-      orders: [],
-      error: '',
-      name: '',
-      pizza: '',
+    export default {
+        name: 'OrdersComponent',
+        data() {
+            return {
+                orders: [],
+                error: '',
+                name: '',
+                pizza: '',
+            };
+        },
+        computed: {
+            ordersInQueue() {
+                return this.orders.filter(order => order.statusID === 1)
+            },
+            ordersInOven() {
+                return this.orders.filter(order => order.statusID === 2)
+            },
+            ordersIsComplete() {
+                return this.orders.filter(order => order.statusID === 3)
+            }
+
+        },
+        async created() {
+            try {
+                this.orders = await OrderService.getOrders();
+            } catch (err) {
+                this.error = err.message;
+            }
+        },
+        methods: {
+            async createOrder() {
+                await OrderService.insertOrder(this.name, this.pizza);
+                this.orders = await OrderService.getOrders();
+            }
+        }
     };
-  },
-    computed: {
-        ordersInQueue() {
-            return this.orders.filter(order => order.statusID === 1)
-        },
-        ordersInOven() {
-            return this.orders.filter(order => order.statusID === 2)
-        },
-        ordersIsComplete() {
-            return this.orders.filter(order => order.statusID === 3)
-        }
-
-    },
-  async created() {
-    try {
-      this.orders = await OrderService.getOrders();
-    } catch (err) {
-      this.error = err.message;
-    }
-  },
-    methods:{
-        async createOrder() {
-            await OrderService.insertOrder(this.name, this.pizza);
-            this.orders = await OrderService.getOrders();
-        }
-    }
-};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .create-order{
-    width: 300px;
+  .create-order {
+    width: 50%;
     margin: 0 auto;
   }
 
-  h4{
+  input[type="radio"]{
+    margin-left: 12px;
+    margin-right: 5px;
+  }
+  .radioGroup{
+    border: 1px solid black;
+    width: 100%;
+  }
+
+  h4 {
     text-align: center;
   }
 </style>
