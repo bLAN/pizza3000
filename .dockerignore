@@ -1,0 +1,12 @@
+.idea/
+**/coverage/**
+**/.nyc_output/**
+/node_modules/
+/client/node_modules/
+/server/node_modules/
+/server/dist/
+/client/tests/e2e/screenshots/
+/client/tests/e2e/videos/
+/deploy/
+/.gitlab-ci.yml
+/docker/

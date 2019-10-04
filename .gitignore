@@ -253,3 +253,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,linux,macos,windows,webstorm
+
+docker/
+
+server/dist
+g
