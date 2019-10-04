@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api/orders/';
+const url = '/api/orders/';
 
 class OrderService {
   // GET Orders
@@ -24,15 +24,15 @@ class OrderService {
   // GET Pizzas
 
   static getPizzas(){
-    return axios.get('http://localhost:5000/api/orders/items')
+    return axios.get('/api/items')
       .then(response => response.data)
   }
 
   // POST Orders
-  static insertOrder(name, pizza) {
+  static insertOrder(customerName, itemId) {
     return axios.post(url, {
-      name,
-      pizza,
+      customerName,
+      itemId,
     });
   }
 
@@ -43,10 +43,8 @@ class OrderService {
 
   // PUT Orders
 
-  static updateOrder(id, newStatusID) {
-    return axios.put(`${url}${id}`, {
-      statusID: newStatusID,
-    });
+  static updateOrder(id, updatedOrder) {
+    return axios.put(`${url}${id}`, updatedOrder);
   }
 }
 

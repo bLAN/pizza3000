@@ -5,77 +5,39 @@
     <div class="columns">
       <div class="column">
         <h4 class="subtitle is-4">I Kø</h4>
-        <div class="card"
+        <OrderCard
              v-for="(order) in ordersInQueue"
-             v-bind:item="order"
-             v-bind:key="order._id"
-        >
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4">{{ order.name }}</p>
-              </div>
-            </div>
-
-            <div class="content">
-              <p class="subtitle is-5">{{ order.pizza.name }}</p>
-            </div>
-
-
-          </div>
-        </div>
+             v-bind:order="order"
+             v-bind:key="order.id"
+        />
       </div>
       <div class="column">
         <h4 class="subtitle is-4">I Ovn</h4>
-        <div class="card"
-             v-for="(order) in ordersInOven"
-             v-bind:item="order"
-             v-bind:key="order._id"
-        >
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4">{{ order.name }}</p>
-              </div>
-            </div>
-
-            <div class="content">
-              <p class="subtitle is-5">{{ order.pizza.name }}</p>
-            </div>
-
-          </div>
-        </div>
+        <OrderCard
+          v-for="(order) in ordersInOven"
+          v-bind:order="order"
+          v-bind:key="order.id"
+        />
       </div>
       <div class="column">
         <h4 class="subtitle is-4">Klar (Hentast i Kiosken)</h4>
-        <div class="card"
-             v-for="(order) in ordersIsComplete"
-             v-bind:item="order"
-             v-bind:key="order._id"
-        >
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4">{{ order.name }}</p>
-              </div>
-            </div>
-
-            <div class="content">
-              <p class="subtitle is-5">{{ order.pizza.name }}</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
+        <OrderCard
+          v-for="(order) in ordersIsComplete"
+          v-bind:order="order"
+          v-bind:key="order.id"
+        />
+    </div>
     </div>
   </div>
 </template>
 
 <script>
     import OrderService from '../OrderService';
+    import OrderCard from './OrderCard'
 
     export default {
         name: 'OverviewComponent',
+        components: {OrderCard},
         data() {
             return {
                 orders: [],
@@ -86,13 +48,13 @@
         },
         computed: {
             ordersInQueue() {
-                return this.orders.filter(order => order.statusID === 1)
+                return this.orders.filter(order => order.status === 0)
             },
             ordersInOven() {
-                return this.orders.filter(order => order.statusID === 2)
+                return this.orders.filter(order => order.status === 1)
             },
             ordersIsComplete() {
-                return this.orders.filter(order => order.statusID === 3)
+                return this.orders.filter(order => order.status === 2)
             }
 
         },

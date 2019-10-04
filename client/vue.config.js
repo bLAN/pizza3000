@@ -8,9 +8,17 @@ module.exports = {
       postcss: {
         plugins: [
           prefixer({
-            prefix: 'b-',
+            prefix: '',
           }),
         ],
+      },
+    },
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081/',
+        changeOrigin: true,
       },
     },
   },
