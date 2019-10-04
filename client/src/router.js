@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import Admin from "./views/Admin";
 import Overview from "./views/Overview";
 
+
 Vue.use(Router);
 
 export default new Router({
@@ -21,9 +22,9 @@ export default new Router({
       component: Overview,
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: Admin,
+      path: "/admin",
+      name: "admin",
+      component: Admin
     },
   ],
 });

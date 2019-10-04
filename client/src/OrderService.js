@@ -21,6 +21,13 @@ class OrderService {
     });
   }
 
+  // GET Pizzas
+
+  static getPizzas(){
+    return axios.get('http://localhost:5000/api/orders/items')
+      .then(response => response.data)
+  }
+
   // POST Orders
   static insertOrder(name, pizza) {
     return axios.post(url, {

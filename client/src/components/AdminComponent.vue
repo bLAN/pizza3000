@@ -26,26 +26,21 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Flytt opp</a>
+                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Flytt Opp</a>
               </p>
               <p class="control">
-                <a class="button is-danger" v-on:click="deleteOrder(order._id)">Slett</a>
+                <a class="button is-danger" v-on:click="deleteOrder(order._id)"><span class="delete"></span></a>
               </p>
             </div>
 
@@ -61,18 +56,13 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
             <div class="field is-grouped">
@@ -83,7 +73,7 @@
                 <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Flytt opp</a>
               </p>
               <p class="control">
-                <a class="button is-danger" v-on:click="deleteOrder(order._id)">Slett</a>
+                <a class="button is-danger" v-on:click="deleteOrder(order._id)"><span class="delete"></span></a>
               </p>
             </div>
 
@@ -99,18 +89,13 @@
         >
           <div class="card-content">
             <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="media-content">
                 <p class="title is-4">{{ order.name }}</p>
               </div>
             </div>
 
             <div class="content">
-              <p>{{ order.pizza }}</p>
+              <p class="subtitle is-5">{{ order.pizza.name }}</p>
             </div>
 
             <div class="field is-grouped">
@@ -118,10 +103,10 @@
                 <a class="button is-warning" v-on:click="updateOrder(order._id, order.statusID-1)">Flytt ned</a>
               </p>
               <p class="control">
-                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Marker Levert</a>
+                <a class="button is-primary" v-on:click="updateOrder(order._id, order.statusID+1)">Marker Hentet</a>
               </p>
               <p class="control">
-                <a class="button is-danger" v-on:click="deleteOrder(order._id)">Slett</a>
+                <a class="button is-danger" v-on:click="deleteOrder(order._id)"><span class="delete"></span></a>
               </p>
             </div>
 
@@ -143,6 +128,7 @@
                 error: '',
                 name: '',
                 pizza: '',
+                pizzas: [],
             };
         },
         computed: {
@@ -184,10 +170,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .order{
-    border: 1px solid black;
-    border-radius: 4px;
-    margin: 10px;
 
-  }
 </style>

@@ -6,7 +6,19 @@ const router = express.Router();
 // Get orders
 router.get('/', async (req, res) => {
    const orders = await loadOrdersCollection();
-   res.send(await orders.find({}).toArray());
+   res.send(await orders.aggregate([
+       {
+           $lookup: {
+               from: 'pizzaBase',
+               localField: 'pizza',
+               foreignField: '_id',
+               as: 'pizza',
+           }
+       },
+       {
+           $unwind: '$pizza'
+       }
+   ]).toArray());
 });
 
 // Add orders
@@ -14,7 +26,7 @@ router.post('/', async (req, res) => {
     const orders = await loadOrdersCollection();
     await orders.insertOne({
         name: req.body.name,
-        pizza: req.body.pizza,
+        pizza: mongodb.ObjectId(req.body.pizza),
         statusID: 1,
         createdAt: new Date(),
     });
@@ -53,7 +65,7 @@ router.get('/items', async (req, res) => {
     ]).toArray();
 
     const result = (await items.find({}).toArray()).map(item => {
-        const stat = stats.find(stat => stat._id.equals(item._id));
+        const stat = stats.find(stat => item._id.equals(stat._id));
         item.sold = stat ? stat.sold : 0;
         item.available = item.quantity - item.sold;
         return item
