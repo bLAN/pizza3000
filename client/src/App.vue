@@ -1,5 +1,5 @@
 <template>
-  <div class="container is-fluid">
+  <div id="app" class="container is-fluid">
     <router-view />
   </div>
 </template>
@@ -15,4 +15,6 @@
 <style lang="css">
   @import "~bulma/css/bulma.css";
 
+  html{ background-color: lightgray;
+  }
 </style>
